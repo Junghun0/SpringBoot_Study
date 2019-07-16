@@ -146,3 +146,44 @@ org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoCo
 <img width="579" alt="스크린샷 2019-07-16 오후 1 22 12" src="https://user-images.githubusercontent.com/30828236/61266048-ff028400-a7cd-11e9-8b0c-255b7904276d.png">
 <img width="762" alt="스크린샷 2019-07-16 오후 1 24 07" src="https://user-images.githubusercontent.com/30828236/61266042-f90ca300-a7cd-11e9-90ab-001f1c550967.png">
 <img width="646" alt="스크린샷 2019-07-16 오후 1 31 36" src="https://user-images.githubusercontent.com/30828236/61266081-16da0800-a7ce-11e9-85e9-aa90c493bb19.png">
+
+
+
+## 내장 웹 서버 응용
+
+- 다른 서블릿 컨테이너로 변경
+- 웹 서버 사용 하지 않기
+- 포트
+	- server.port
+	- 랜덤 포트
+	- ApplicationListner<ServletWebServerInitializedEvent>
+
+<img width="567" alt="스크린샷 2019-07-16 오후 1 51 55" src="https://user-images.githubusercontent.com/30828236/61266961-f3648c80-a7d0-11e9-84ff-7f88e2152a2a.png">
+
+spring-boot-starter-web 에서 가져오는 tomcat 의 사용을 안하도록 설정한다.
+
+```xml
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-web</artifactId>
+	<exclusions>
+       <exclusion>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-starter-tomcat</artifactId>
+       </exclusion>
+   </exclusions>
+</dependency>
+```
+
+jetty 의존성 추가
+
+```xml
+<dependency>
+     <groupId>org.springframework.boot</groupId>
+     <artifactId>spring-boot-starter-jetty</artifactId>
+</dependency>
+```
+
+<img width="569" alt="스크린샷 2019-07-16 오후 1 58 40" src="https://user-images.githubusercontent.com/30828236/61267191-d9777980-a7d1-11e9-98f8-01fc61fd7c81.png">
+
+spring-boot-starter 아래에 있는 tomcat 이 사라지고 jetty 의존성이 추가된 것을 확인할 수 있다.
