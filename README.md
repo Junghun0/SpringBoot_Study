@@ -156,7 +156,7 @@ org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoCo
 - 포트
 	- server.port
 	- 랜덤 포트
-	- ApplicationListner<ServletWebServerInitializedEvent>
+	- ApplicationListner< ServletWebServerInitializedEvent >
 
 <img width="567" alt="스크린샷 2019-07-16 오후 1 51 55" src="https://user-images.githubusercontent.com/30828236/61266961-f3648c80-a7d0-11e9-84ff-7f88e2152a2a.png">
 
@@ -187,3 +187,22 @@ jetty 의존성 추가
 <img width="569" alt="스크린샷 2019-07-16 오후 1 58 40" src="https://user-images.githubusercontent.com/30828236/61267191-d9777980-a7d1-11e9-98f8-01fc61fd7c81.png">
 
 spring-boot-starter 아래에 있는 tomcat 이 사라지고 jetty 의존성이 추가된 것을 확인할 수 있다.
+
+- resources/application.properties
+	- 웹 서버 사용하지 않기<br/>
+	spring.main.web-application-type=none
+	- 랜덤 포트 사용<br/>
+	server.port=0
+	- ApplicationListner< ServletWebServerInitializedEvent > <br/>
+	
+```java
+	
+@Component
+public class PortListener implements ApplicationListener<ServletWebServerInitializedEvent> {
+    @Override
+    public void onApplicationEvent(ServletWebServerInitializedEvent servletWebServerInitializedEvent) {
+        ServletWebServerApplicationContext servletWebServerApplicationContext = servletWebServerInitializedEvent.getApplicationContext();
+        System.out.println(servletWebServerApplicationContext.getWebServer().getPort());
+    }
+}
+```
