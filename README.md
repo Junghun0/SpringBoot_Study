@@ -206,3 +206,31 @@ public class PortListener implements ApplicationListener<ServletWebServerInitial
     }
 }
 ```
+
+## HTTPS
+
+1. 키스토어 만들기<br/><br/>
+keytool -genkey<br/> 
+  	-alias tomcat<br/> 
+  	-storetype PKCS12 <br/>
+  	-keyalg RSA<br/> 
+  	-keysize 2048<br/> 
+  	-keystore keystore.p12<br/> 
+  	-validity 4000<br/><br/>
+2. application.properties<br/><br/>
+server.ssl.key-store: keystore.p12<br/>
+server.ssl.key-store-password: 123456<br/>
+server.ssl.keyStoreType: PKCS12<br/>
+server.ssl.keyAlias: tomcat<br/>
+
+* 이렇게 설정을 하게되면 커넥터는 HTTPS 만 처리하게되고 HTTP를 받을 커넥터가 없기때문에 HTTP는 사용할 수 없다.
+하지만, 설정을 통해 HTTP를 사용할 수 있게 할 수 있다.
+
+설정방법 : [참고링크](https://github.com/spring-projects/spring-boot/tree/v2.0.3.RELEASE/spring-boot-samples/spring-boot-sample-tomcat-multi-connectors)
+
+### HTTP2 설정
+1. application/properties<br/>
+**server.http2.enabled = true** 추가<br/>
+사용하는 서블릿 컨테이너 마다 다름.
+
+단, 제약사항이 서버마다 다르다. Tomcat의 경우 9.0.x 버전과 JDK9 이상을 사용하면 별로의 제약사항은 없다.
