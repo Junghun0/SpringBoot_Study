@@ -130,8 +130,19 @@ public class DemoApplication {
     }
 }
 ```
+
 - 이 모든 과정을 보다 상세히 또 유연하고 설정하고 실행해주는게 바로 스프링 부트의 자동 설정.
 	- ServletWebServerFactoryAutoConfiguration (서블릿 웹 서버 생성)
 		- TomcatServletWebServerFactoryCustomizer (서버 커스터마이징)
 - DispatcherServletAutoConfiguration
 	- 서블릿 만들고 등록
+
+#### 자동 설정파일
+
+org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration,\
+서블릿 웹서버를 자동설정하는 자동설정이다.
+자동설정을 통해 톰캣이 만들어진다.
+
+<img width="579" alt="스크린샷 2019-07-16 오후 1 22 12" src="https://user-images.githubusercontent.com/30828236/61266048-ff028400-a7cd-11e9-8b0c-255b7904276d.png">
+<img width="762" alt="스크린샷 2019-07-16 오후 1 24 07" src="https://user-images.githubusercontent.com/30828236/61266042-f90ca300-a7cd-11e9-90ab-001f1c550967.png">
+<img width="646" alt="스크린샷 2019-07-16 오후 1 31 36" src="https://user-images.githubusercontent.com/30828236/61266081-16da0800-a7ce-11e9-85e9-aa90c493bb19.png">
