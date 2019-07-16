@@ -74,8 +74,8 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 - 덮어쓰기 방지하기
 	- @ConditionalOnMissingBean
 - 빈 재정의 수고 덜기
-	- @ConfigurationProperties(“holoman”)
-	- @EnableConfigurationProperties(HolomanProperties)
+	- @ConfigurationProperties(“junghoon”)
+	- @EnableConfigurationProperties(JunghoonProperties)
 	- 프로퍼티 키값 자동 완성
 	
 ```xml
